@@ -29,9 +29,49 @@ require 'date'
 require 'optparse'
 require 'pp'
 require 'ostruct'
-
+require 'csv'
 
 PDF_CALENDAR_VERSION = '0.1'
+
+class Mark
+
+  attr_reader :datestring, :text, :colorcode
+  def initialize(datestring, text, colorcode)
+     @datestring = datestring
+     @text       = text
+     @colorcode  = colorcode
+  end
+
+  def check_datestring
+    @datestring =~ /\d{4}-\d{2}-\d{2}/
+  end
+
+  def check_colorcode
+    @colorcode =~ /#([0-9A-Fa-e]){6}/
+  end
+
+  def check
+    raise "Wrong datestring: #{@datestring}" unless check_datestring
+    raise "Wrong colorcode: #{@colorcode}" unless check_colorcode
+  end 
+
+  def to_liquid
+    %w( datestring text colorcode)
+  end 
+
+  def Mark.create_marks_from_csv(filename)
+     lines = CSV.parse(IO.read(filename), ';')
+     pp lines
+     marks = lines.map{ |line| pp line; Mark.new(line[0],line[1],line[2]) }
+     puts marks.length
+     pp marks
+     hashed_marks = {}
+     marks.each{ |m| hashed_marks[m.datestring] = m }
+	pp hashed_marks
+     hashed_marks
+     
+  end
+end
 
 class Optparse
     # Return a structure describing the options.
@@ -59,18 +99,11 @@ class Optparse
           options.title = str
         end
 
-        # Optional argument with keyword completion.
-#        opts.on("--paper [format]", ['din-a4', 'letter'],
-#                "Select paper format (DIN A4, Letter)") do |f|
-#          options.paper = f
-#        end
-
         paper_formats = ['din-a4', 'letter']
         opts.on("--paper FORMAT", paper_formats, "Select paper format",
                 "  (#{paper_formats.join(',')})") do |f|
           options.paper = f
         end
-
 
         opts.on("--fop PATH", "Path to 'fop' executable") do |path|
           options.fop_path = path
@@ -79,6 +112,10 @@ class Optparse
         # Cast 'year' argument to Int.
         opts.on("--year N", Integer, "Create calendar for year N") do |n|
           options.year = n
+        end
+
+        opts.on("--marks FILENAME", "Create calendar for year N") do |f|
+          options.marks = Mark.create_marks_from_csv(f)
         end
 
         opts.separator ""
@@ -199,13 +236,15 @@ year = options.year
 cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
 
 caltemplate = Liquid::Template.parse(File.read('caltemplate.xslfo.xml'))
-fo_stylesheet = caltemplate.render( 'cal_title' => cal_title || year, 'weekdays' => weekday_names, 'month_names' => month_names, 'month' => cal[7], 'cal' => cal, 'paper' => options.paper ) 
+fo_stylesheet = caltemplate.render( 'cal_title' => cal_title || year, 'weekdays' => weekday_names, 'month_names' => month_names, 'month' => cal[7], 'cal' => cal, 'paper' => options.paper, 'marks' => options.marks ) 
 
 f = Tempfile.new('calendar.fo')
 f.write(fo_stylesheet)
 f.close
 
 puts f.path
+
+puts fo_stylesheet
 
 `#{options.fop_path} #{f.path} #{options.pdf}`
 

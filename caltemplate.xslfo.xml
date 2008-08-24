@@ -1,3 +1,9 @@
+<% def render_weekday(day) 
+ return '<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">' + 
+  "  <fo:block text-align='center'>#{day}</fo:block>" + 
+  "</fo:table-cell>"
+ end %>
+
 <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 <fo:layout-master-set>
 
@@ -56,11 +62,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %>
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[0] %>
@@ -104,11 +106,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[1] %> 
@@ -151,11 +149,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[2] %> 
@@ -198,11 +192,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[3] %> 
@@ -248,11 +238,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[4] %> 
@@ -296,11 +282,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[5] %> 
@@ -344,11 +326,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[6] %> 
@@ -392,11 +370,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
     
 <% for week in cal[7] %> 
@@ -441,11 +415,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[8] %> 
@@ -489,11 +459,7 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[9] %> 
@@ -534,11 +500,7 @@
 </fo:table-row>
 
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[10] %> 
@@ -583,19 +545,23 @@
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-<% for d in weekdays %> 
-<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center"><%= d %></fo:block>
-</fo:table-cell>
-<% end %>
+<% for d in weekdays %> <%= render_weekday(d) %> <% end %>
 </fo:table-row>
 
 <% for week in cal[11] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
 <% for day in week %> 
+
+<% if marks and marks["2008-12-#{day}"] %>
+<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#A5B4FC" >
+  <fo:block text-align="center"><%= day %></fo:block>
+</fo:table-cell>
+<% else %>
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
   <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
+<% end %>
+
 <% end %>
 </fo:table-row>
 <% end %>

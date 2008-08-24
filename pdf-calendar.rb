@@ -222,10 +222,10 @@ options = Optparse.parse(ARGV)
 pp options
 
 cal_title = options.title
-month_names   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
 month_names   = [nil] + %w(January February March April May June July August September October November December)
-weekday_names = %w(So Mo Di Mi Do Fr Sa)
+month_names   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
 weekday_names = %w(Sun Mon Tue Wed Thu Fri Sat)
+weekday_names = %w(Mo Di Mi Do Fr Sa So)
 year = options.year
 
 cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
@@ -237,7 +237,7 @@ weekdays = weekday_names
 month_names = month_names
 cal = cal
 paper = options.paper
-#marks = options.marks 
+marks = options.marks 
 
 fo_stylesheet = caltemplate.result(binding) 
 
@@ -246,7 +246,7 @@ f.write(fo_stylesheet)
 f.close
 
 puts f.path
-#puts fo_stylesheet
+puts fo_stylesheet
 
 `#{options.fop_path} #{f.path} #{options.pdf}`
 

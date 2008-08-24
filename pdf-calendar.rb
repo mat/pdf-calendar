@@ -34,11 +34,11 @@ PDF_CALENDAR_VERSION = '0.1'
 
 class Mark
 
-  attr_reader :datestring, :text, :colorcode
-  def initialize(datestring, text, colorcode)
+  attr_reader :datestring, :colorcode, :text
+  def initialize(datestring, colorcode, text)
      @datestring = datestring
-     @text       = text
      @colorcode  = colorcode
+     @text       = text
   end
 
   def check_datestring

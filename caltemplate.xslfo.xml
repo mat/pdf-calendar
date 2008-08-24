@@ -5,8 +5,8 @@
  end %>
 
 <% def render_day(year, month, day, marks) 
-if marks && marks["#{year}-#{sprintf('%02d', month)}-#{sprintf('%02d', day)}"] then 
- return '<fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#A5B4FC">' + 
+if marks && m=marks["#{year}-#{sprintf('%02d', month)}-#{sprintf('%02d', day)}"] then 
+ return "<fo:table-cell border-style='solid' border-width='1.0pt' border-color='rgb(200, 200, 200)' background-color='#{m.colorcode}'>" + 
   "  <fo:block text-align='center'>#{day}</fo:block>" + 
   "</fo:table-cell>"
 else

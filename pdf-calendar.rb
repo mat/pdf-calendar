@@ -22,8 +22,6 @@
 # OTHER DEALINGS IN THE SOFTWARE.
 
 
-require 'lib/liquid'
-
 require 'tempfile'
 require 'date'
 require 'optparse'
@@ -54,10 +52,6 @@ class Mark
   def check
     raise "Wrong datestring: #{@datestring}" unless check_datestring
     raise "Wrong colorcode: #{@colorcode}" unless check_colorcode
-  end 
-
-  def to_liquid
-    %w( datestring text colorcode)
   end 
 
   def Mark.create_marks_from_csv(filename)

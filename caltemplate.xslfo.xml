@@ -1,11 +1,11 @@
 <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 <fo:layout-master-set>
 
-{% if paper == 'letter' %}
+<% if paper == 'letter' %>
 <fo:simple-page-master margin-right="1cm" margin-left="1cm" margin-bottom="1cm" margin-top="1cm" page-width="279mm" page-height="216mm" master-name="letter">
-{% else %}
+<% else %>
 <fo:simple-page-master margin-right="1cm" margin-left="1cm" margin-bottom="1cm" margin-top="1cm" page-width="297mm" page-height="210mm" master-name="din-a4"> 
-{% endif %}
+<% end %>
 
 
 <fo:region-body margin-bottom="1.5cm" margin-top="0.5cm"/>
@@ -13,11 +13,11 @@
 </fo:simple-page-master>
 </fo:layout-master-set>
 
-{% if paper == 'letter' %}
+<% if paper == 'letter' %>
 <fo:page-sequence initial-page-number="1" master-reference="letter">
-{% else %}
+<% else %>
 <fo:page-sequence initial-page-number="1" master-reference="din-a4">
-{% endif %}
+<% end %>
 
 <fo:flow flow-name="xsl-region-body">
 
@@ -27,7 +27,7 @@
       <fo:block font-size="18pt" line-height="24pt" 
                 space-after="5pt" background-color="gray" color="white" 
                 text-align="center" padding-top="3pt">
-		 {{ cal_title }} 
+		 <%= cal_title %>
       </fo:block>
 </fo:block-container>
 
@@ -50,28 +50,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[1] }}</fo:block>
+<fo:block text-align="center"><%= month_names[1] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %>
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[0] %} 
+<% for week in cal[0] %>
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %>
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 
 </fo:table-body>
@@ -98,28 +98,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[2] }}</fo:block>
+<fo:block text-align="center"><%= month_names[2] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[1] %} 
+<% for week in cal[1] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -145,28 +145,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[3] }}</fo:block>
+<fo:block text-align="center"><%= month_names[3] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[2] %} 
+<% for week in cal[2] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -192,28 +192,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[4] }}</fo:block>
+<fo:block text-align="center"><%= month_names[4] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[3] %} 
+<% for week in cal[3] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -242,28 +242,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[5] }}</fo:block>
+<fo:block text-align="center"><%= month_names[5] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[4] %} 
+<% for week in cal[4] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -290,28 +290,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[6] }}</fo:block>
+<fo:block text-align="center"><%= month_names[6] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[5] %} 
+<% for week in cal[5] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -338,28 +338,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[7] }}</fo:block>
+<fo:block text-align="center"><%= month_names[7] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[6] %} 
+<% for week in cal[6] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -386,28 +386,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[8] }}</fo:block>
+<fo:block text-align="center"><%= month_names[8] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
     
-{% for week in cal[7] %} 
+<% for week in cal[7] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -435,28 +435,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[9] }}</fo:block>
+<fo:block text-align="center"><%= month_names[9] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[8] %} 
+<% for week in cal[8] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -483,28 +483,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[10] }}</fo:block>
+<fo:block text-align="center"><%= month_names[10] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[9] %} 
+<% for week in cal[9] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>
@@ -529,27 +529,27 @@
 <fo:table-body border-color="rgb(100, 100, 100)" border-width="1.0pt">
 <fo:table-row font-weight="bold" height="0.5cm">
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
-<fo:block text-align="center">{{ month_names[11] }}</fo:block>
+<fo:block text-align="center"><%= month_names[11] %></fo:block>
 </fo:table-cell>
 </fo:table-row>
 
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[10] %} 
+<% for week in cal[10] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 
 </fo:table-body>
@@ -577,28 +577,28 @@
 <fo:table-cell border-style="solid" border-color="rgb(200, 200, 200)" background-color="rgb(200, 200, 200)" display-align="center" number-columns-spanned="7">
 
 
-<fo:block text-align="center">{{ month_names[12] }}</fo:block>
+<fo:block text-align="center"><%= month_names[12] %></fo:block>
 
 
 </fo:table-cell>
 </fo:table-row>
 <fo:table-row color="white" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for d in weekdays %} 
+<% for d in weekdays %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="grey">
-  <fo:block text-align="center">{{ d }}</fo:block>
+  <fo:block text-align="center"><%= d %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
 
-{% for week in cal[11] %} 
+<% for week in cal[11] %> 
 <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-{% for day in week %} 
+<% for day in week %> 
 <fo:table-cell border-style="solid" border-width="1.0pt" border-color="rgb(200, 200, 200)" background-color="#FFFFFF" >
-  <fo:block text-align="center">{{ day }}</fo:block>
+  <fo:block text-align="center"><%= day %></fo:block>
 </fo:table-cell>
-{% endfor %}
+<% end %>
 </fo:table-row>
-{% endfor %}
+<% end %>
 
 </fo:table-body>
 </fo:table>

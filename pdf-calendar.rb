@@ -30,6 +30,7 @@ require 'optparse'
 require 'pp'
 require 'ostruct'
 require 'csv'
+require 'erb'
 
 PDF_CALENDAR_VERSION = '0.1'
 
@@ -235,16 +236,23 @@ year = options.year
 
 cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
 
-caltemplate = Liquid::Template.parse(File.read('caltemplate.xslfo.xml'))
-fo_stylesheet = caltemplate.render( 'cal_title' => cal_title || year, 'weekdays' => weekday_names, 'month_names' => month_names, 'month' => cal[7], 'cal' => cal, 'paper' => options.paper, 'marks' => options.marks ) 
+caltemplate = ERB.new(File.read('caltemplate.xslfo.xml'))
+
+cal_title ||= year
+weekdays = weekday_names
+month_names = month_names
+cal = cal
+paper = options.paper
+#marks = options.marks 
+
+fo_stylesheet = caltemplate.result(binding) 
 
 f = Tempfile.new('calendar.fo')
 f.write(fo_stylesheet)
 f.close
 
 puts f.path
-
-puts fo_stylesheet
+#puts fo_stylesheet
 
 `#{options.fop_path} #{f.path} #{options.pdf}`
 

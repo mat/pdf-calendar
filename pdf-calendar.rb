@@ -219,7 +219,6 @@ end # of Calendar
 
 
 options = Optparse.parse(ARGV)
-pp options
 
 cal_title = options.title
 month_names   = [nil] + %w(January February March April May June July August September October November December)
@@ -245,8 +244,7 @@ f = Tempfile.new('calendar.fo')
 f.write(fo_stylesheet)
 f.close
 
-puts f.path
-puts fo_stylesheet
+#puts fo_stylesheet
 
 `#{options.fop_path} #{f.path} #{options.pdf}`
 

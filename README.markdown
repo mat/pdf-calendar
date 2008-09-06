@@ -1,26 +1,24 @@
 ## pdf-calendar
-A ruby script that generates PDF calendars using Apache FOP.
+A Ruby script that generates PDF calendars using Apache FOP.
  
 ### Requirements
 * Ruby, Apache FOP installation
 
 ### Quick Install
-1. Move GitNub.app to /Applications
-2. Move (or symlink) nub shell file to /usr/local/bin
+1. Install Apache FOP, see http://xmlgraphics.apache.org/fop/0.95/running.html
+2. Make sure that `fop` is in your PATH.
 
-http://xmlgraphics.apache.org/fop/0.95/running.html
 
 ### How to Use
-In your shell, move to a git directory and invoke `nub`.  You always use this 
-helper to invoke the application, otherwise you get nothing.
+Start creating calendars. 
 
-		$Caged@caged:~/dev/git/gitnub% nub
+		ruby pdf-calendar.rb --year 2008
+		ruby pdf-calendar.rb --year 2008 --title "mat's fancy calendar"
+		ruby pdf-calendar.rb --year 2008 --pdf fanfycal.pdf
+		ruby pdf-calendar.rb --year 2008 --paper letter
+		ruby pdf-calendar.rb --help
 
-		
-### Building from Source
-1. Run `git submodule init` & `git submodule update` in the root directory.
-2. Run `rake build` or open GitNub.xcodeproj in Xcode - press Build
-3. Run `rake install` to move GitNub.app to /Applications and copy nub to /usr/local/bin.
-   
+Leaving out `--year` creates a calendar for the current year.
+
 ### Major Contributors
 * Matthias Luedtke - Maintainer

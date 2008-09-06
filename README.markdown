@@ -1,6 +1,7 @@
 ## pdf-calendar
 A Ruby script that generates PDF calendars using Apache FOP.
 
+Showcase at <http://github.com/mat/pdf-calendar/wikis>
 ### Features
 
 Supports
@@ -12,7 +13,7 @@ Supports
 * Ruby, Apache FOP installation
 
 ### Quick Install
-1. Install Apache FOP, see http://xmlgraphics.apache.org/fop/0.95/running.html
+1. Install Apache FOP: <http://xmlgraphics.apache.org/fop/0.95/running.html>
 2. Make sure that `fop` is in your PATH.
 
 

@@ -79,6 +79,8 @@ class Optparse
       options.pdf  = "calendar.pdf"
       options.fop_path = "fop"
       options.paper = "din-a4"
+      options.lang = 'en'
+
 
       opts = OptionParser.new do |opts|
         opts.banner = "Usage: pdf_calendar.rb [options]"
@@ -98,6 +100,12 @@ class Optparse
         opts.on("--paper FORMAT", paper_formats, "Select paper format",
                 "  (#{paper_formats.join(',')})") do |f|
           options.paper = f
+        end
+
+        languages = ['en', 'de']
+        opts.on("--lang LANGUAGE", languages, "Select language used for months, weekdays",
+                "  (#{languages.join(',')})") do |l|
+          options.lang = l
         end
 
         opts.on("--fop PATH", "Path to 'fop' executable") do |path|
@@ -217,14 +225,21 @@ class Calendar
 
 end # of Calendar
 
+## Languages
+weekday_names = {}
+month_names = {}
+
+weekday_names['de'] = %w(Mo Di Mi Do Fr Sa So)
+month_names['de']   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
+
+weekday_names['en'] = %w(Sun Mon Tue Wed Thu Fri Sat)
+month_names['en']   = [nil] + %w(January February March April May June July August September October November December)
+###
 
 options = Optparse.parse(ARGV)
 
 cal_title = options.title
-month_names   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
-month_names   = [nil] + %w(January February March April May June July August September October November December)
-weekday_names = %w(Mo Di Mi Do Fr Sa So)
-weekday_names = %w(Sun Mon Tue Wed Thu Fri Sat)
+
 year = options.year
 
 cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
@@ -232,8 +247,8 @@ cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |c
 caltemplate = ERB.new(File.read('caltemplate.xslfo.xml'))
 
 cal_title ||= year
-weekdays = weekday_names
-month_names = month_names
+weekdays = weekday_names[options.lang]
+month_names = month_names[options.lang]
 cal = cal
 paper = options.paper
 marks = options.marks 

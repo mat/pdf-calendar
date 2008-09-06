@@ -221,10 +221,10 @@ end # of Calendar
 options = Optparse.parse(ARGV)
 
 cal_title = options.title
-month_names   = [nil] + %w(January February March April May June July August September October November December)
 month_names   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
-weekday_names = %w(Sun Mon Tue Wed Thu Fri Sat)
+month_names   = [nil] + %w(January February March April May June July August September October November December)
 weekday_names = %w(Mo Di Mi Do Fr Sa So)
+weekday_names = %w(Sun Mon Tue Wed Thu Fri Sat)
 year = options.year
 
 cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 

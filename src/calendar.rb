@@ -19,13 +19,11 @@ class Layout
   def to_s
     str = ""
     
-    @table.each_index { |i|
-      r = @table[i]
-      r.each_index { |j|
-        str << "#{@table[i][j]} " #unless @table[i][j] == 0
-      }
+    each_week{ |week|
+      str << week.map{ |day| sprintf("%2d", day)}.join(' ')
       str << "\n"
     }
+    str.gsub!(' 0', '  ')
     str
   end
   

@@ -11,8 +11,7 @@ class Layout
   def initialize(month)
     @month = month
 
-    @table = Array.new(6){Array.new(7)}
-    @table = fill_table_with_calendar(@table)
+    @table = fill_table_with_calendar(Array.new(6){Array.new(7)})
     tidy_table
   end
 
@@ -23,14 +22,11 @@ class Layout
       str << week.map{ |day| sprintf("%2d", day)}.join(' ')
       str << "\n"
     }
-    str.gsub!(' 0', '  ')
-    str
+    str.gsub(' 0', '  ')
   end
   
   def each_week
-    @table.each_index{ |i|
-      yield(@table[i])
-    }    
+    @table.each{ |week| yield(week) }
   end
   
   def [](week,day)

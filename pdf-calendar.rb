@@ -71,7 +71,7 @@ class Optparse
           options.paper = f
         end
 
-        languages = ['en', 'de', 'fr']
+        languages = ['en', 'de', 'fr', 'es']
         opts.on("--lang LANGUAGE", languages, "Select language used for months, weekdays",
                 "  (#{languages.join(',')})") do |l|
           options.lang = l

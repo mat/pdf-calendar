@@ -29,6 +29,15 @@ module Calendar
 
   end
 
+  def self.lang_es
+       # The Spanish week starts on Monday.
+   [  'es',
+      %w(lun mar mier jue vier sab dom),
+      %w(enero febrero marzo abril mayo junio julio 
+         agosto septiembre octubre noviembre diciembre) ]
+
+  end
+
   def self.add_lang(locale, weekdays, months)
      @@weekday_names[locale] = weekdays
      @@month_names[locale]   = [nil] + months
@@ -38,6 +47,7 @@ module Calendar
     add_lang(*lang_en)
     add_lang(*lang_de)
     add_lang(*lang_fr)
+    add_lang(*lang_es)
   end
 
    def self.weekdays(for_locale)

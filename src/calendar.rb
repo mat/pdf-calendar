@@ -9,10 +9,11 @@ class Layout
 
   # month is a Time, only year and month are considered, though
   def initialize(month)
-    @table = init_table
     @month = month
 
+    @table = init_table
     calc_table
+    tidy_table
   end
 
   def to_s
@@ -71,15 +72,37 @@ class Layout
   def calc_table
     date = Date.new(@month.year, @month.month, 1)
 
-    # Set day offset so that we get the sequence Monday ... Sunday
+    # Set day offset so that we get the sequence Monday...Sunday
     day_offset = (date.wday + 5)%7
 
-    # Calculate last day in month
     last_day_in_month = ((date >> 1) - 1).day
 
     1.upto(last_day_in_month){ |d|
       @table[(d+day_offset)/7][(d+day_offset)%7] = d
     }
+  end
+  
+  def tidy_table
+    if first_week_completely_blank?
+      move_whole_calendar_one_week_up
+      blank_last_week
+    end
+  end
+
+  def first_week_completely_blank?
+    @table[0].all? { |d| d.nil? }
+  end
+
+  def move_whole_calendar_one_week_up
+    1.upto(5){ |week|
+      0.upto(6) { |day|
+        @table[week-1][day] = @table[week][day]
+      }
+    }
+  end
+
+  def blank_last_week
+    0.upto(6) { |day| @table[5][day] = nil }
   end
 
   end # of Layout

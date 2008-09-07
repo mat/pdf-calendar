@@ -9,27 +9,27 @@ class LoggerTest < Test::Unit::TestCase
 
   def test_layout_for_august_2008_first_row
     (1..4).each do |i|
-      assert_equal nil, @august_2008.get_day(1,i)
+      assert_equal nil, @august_2008[1,i]
     end
-    assert_equal 1, @august_2008.get_day(1,5)
-    assert_equal 2, @august_2008.get_day(1,6)
-    assert_equal 3, @august_2008.get_day(1,7)
+    assert_equal 1, @august_2008[1,5]
+    assert_equal 2, @august_2008[1,6]
+    assert_equal 3, @august_2008[1,7]
   end
  
   def test_layout_for_august_2008_last_row
-    assert_equal 25, @august_2008.get_day(5,1)
-    assert_equal 31, @august_2008.get_day(5,7)
+    assert_equal 25, @august_2008[5,1]
+    assert_equal 31, @august_2008[5,7]
   end
 
   def test_layout_for_september_2008_should_have_no_empty_first_week
     (1..7).each do |i|
-      assert_equal nil, @september_2008.get_day(1,i)
+      assert_equal nil, @september_2008[1,i]
     end
   end
 
   def test_layout_for_september_2008_should_have_no_empty_first_week
     (1..7).each do |i|
-      assert_equal nil, @september_2008.get_day(6,i)
+      assert_equal nil, @september_2008[6,i]
     end
   end
 

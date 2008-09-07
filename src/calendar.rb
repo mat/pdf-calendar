@@ -11,8 +11,8 @@ class Layout
   def initialize(month)
     @month = month
 
-    @table = init_table
-    calc_table
+    @table = Array.new(6){Array.new(7)}
+    @table = fill_table_with_calendar(@table)
     tidy_table
   end
 
@@ -35,41 +35,16 @@ class Layout
     }    
   end
   
-  
-  def get_day(week,day)
+  def [](week,day)
     raise 'Week not in range 1..6.' unless (1..6) === week
     raise 'Day not in range 1..7.' unless (1..7) === day
     @table[week-1][day-1]
   end
+  alias :get_day []
 
-  def self.next_month(month)
-    secs_per_day = 86400 
-    month + secs_per_day * 35
-  end
- 
-  def self.previous_month(month)
-    secs_per_day = 86400 
-    month - secs_per_day * 20
-  end
-   
   private
   
-  def init_table
-   days = Array.new(6)
-    
-    # Create 2 dimensional array
-    days.each_index { |i|
-    r = Array.new(7)
-    r.each_index { |j|
-        r[j] = nil
-    }
-    days[i] = r
-    }
-    
-    days
-  end
-  
-  def calc_table
+  def fill_table_with_calendar(table)
     date = Date.new(@month.year, @month.month, 1)
 
     # Set day offset so that we get the sequence Monday...Sunday
@@ -78,8 +53,9 @@ class Layout
     last_day_in_month = ((date >> 1) - 1).day
 
     1.upto(last_day_in_month){ |d|
-      @table[(d+day_offset)/7][(d+day_offset)%7] = d
+      table[(d+day_offset)/7][(d+day_offset)%7] = d
     }
+    table
   end
   
   def tidy_table

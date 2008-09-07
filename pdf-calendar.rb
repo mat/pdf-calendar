@@ -131,7 +131,7 @@ year = options.year
 
 cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
 
-caltemplate = ERB.new(File.read('caltemplate.xslfo.xml'))
+caltemplate = ERB.new(File.read('templates/default.xslfo.xml'))
 
 cal_title ||= year
 weekdays = weekday_names[options.lang]

@@ -1,4 +1,6 @@
-class Calendar 
+module Calendar
+
+class Layout
 
   attr_reader :month
   attr_reader :table
@@ -77,6 +79,8 @@ class Calendar
       @table[(d+day_offset)/7][(d+day_offset)%7] = d
     }
   end
+
+  end # of Layout
 
 end # of Calendar
 

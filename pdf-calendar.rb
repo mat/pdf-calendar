@@ -32,6 +32,7 @@ require 'erb'
 
 require 'src/calendar'
 require 'src/mark'
+require 'src/languages'
 
 PDF_CALENDAR_VERSION = '0.1'
 
@@ -112,33 +113,19 @@ class Optparse
 end  # class Optparse
 
 
-## Languages
-weekday_names = {}
-month_names = {}
-
-weekday_names['de'] = %w(Mo Di Mi Do Fr Sa So)
-month_names['de']   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
-
-weekday_names['en'] = %w(Mon Tue Wed Thu Fri Sat Sun)
-month_names['en']   = [nil] + %w(January February March April May June July August September October November December)
-
-weekday_names['fr'] = %w(lun mar mer jeu ven sam dim)
-month_names['fr']   = [nil] + %w(janvier février mars avril mai juin juillet août septembre octobre novembre décembre)
-###
-
 options = Optparse.parse(ARGV)
 
 cal_title = options.title
 
 year = options.year
 
-cal = (1..12).to_a.map{ |month| Calendar.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
+cal = (1..12).to_a.map{ |month| Calendar::Layout.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
 
 caltemplate = ERB.new(File.read('templates/default.xslfo.xml'))
 
 cal_title ||= year
-weekdays = weekday_names[options.lang]
-month_names = month_names[options.lang]
+weekdays = Calendar::Languages.weekdays(options.lang)
+month_names = Calendar::Languages.months(options.lang)
 cal = cal
 paper = options.paper
 marks = options.marks 

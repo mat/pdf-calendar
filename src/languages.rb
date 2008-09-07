@@ -4,24 +4,60 @@ module Calendar
 
   class Languages
 
-@weekday_names = {}
-@month_names = {}
+  @@weekday_names = {}
+  @@month_names   = {}
 
-@weekday_names['de'] = %w(Mo Di Mi Do Fr Sa So)
-@month_names['de']   = [nil] + %w(Januar Februar März April Mai Juni Juli August September Oktober November Dezember)
+  def self.lang_en
+   [  'en',
+      %w(Mon Tue Wed Thu Fri Sat Sun),
+      %w(January February March April May June July 
+         August September October November December) ]
+  end
 
-@weekday_names['en'] = %w(Mon Tue Wed Thu Fri Sat Sun)
-@month_names['en']   = [nil] + %w(January February March April May June July August September October November December)
+  def self.lang_de
+   [  'de',
+      %w(Mo Di Mi Do Fr Sa So),
+      %w(Januar Februar März April Mai Juni Juli 
+         August September Oktober November Dezember) ]
+  end
 
-@weekday_names['fr'] = %w(lun mar mer jeu ven sam dim)
-@month_names['fr']   = [nil] + %w(janvier février mars avril mai juin juillet août septembre octobre novembre décembre)
+  def self.lang_fr
+   [  'fr',
+      %w(lun mar mer jeu ven sam dim),
+      %w(janvier février mars avril mai juin juillet 
+         août septembre octobre novembre décembre) ]
+
+  end
+
+  def self.add_lang(locale, weekdays, months)
+     @@weekday_names[locale] = weekdays
+     @@month_names[locale]   = [nil] + months
+  end
+
+  def self.add_langs()
+    add_lang(*lang_en)
+    add_lang(*lang_de)
+    add_lang(*lang_fr)
+  end
 
    def self.weekdays(for_locale)
-      @weekday_names[for_locale]
+      add_langs
+
+      unless @@weekday_names[for_locale]
+        raise "Locale <#{for_locale}> not supported."
+      end
+
+      @@weekday_names[for_locale]
    end
 
    def self.months(for_locale)
-      @month_names[for_locale]
+      add_langs
+
+      unless @@month_names[for_locale]
+        raise "Locale <#{for_locale}> not supported."
+      end
+
+      @@month_names[for_locale]
    end
 end
 

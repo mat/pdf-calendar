@@ -32,9 +32,9 @@ require 'ostruct'
 require 'csv'
 require 'erb'
 
-require 'src/calendar'
-require 'src/mark'
-require 'src/languages'
+require 'lib/calendar'
+require 'lib/mark'
+require 'lib/languages'
 
 PDF_CALENDAR_VERSION = '0.1'
 

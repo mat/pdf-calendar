@@ -1,7 +1,7 @@
 require 'utils'
 require '../src/calendar'
 
-class LoggerTest < Test::Unit::TestCase
+class LayoutTest < Test::Unit::TestCase
   def setup
     @august_2008 = Calendar::Layout.new(Time.mktime(2008,8))
     @september_2008 = Calendar::Layout.new(Time.mktime(2008,9))

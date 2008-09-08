@@ -20,13 +20,13 @@ Supports
 ### How to Use
 Start creating calendars. 
 
-		ruby pdf-calendar.rb --year 2008
-		ruby pdf-calendar.rb --year 2008 --title "Fancy Calendar"
-		ruby pdf-calendar.rb --year 2008 --pdf fancycal.pdf
-		ruby pdf-calendar.rb --year 2008 --paper letter
-		ruby pdf-calendar.rb --year 2008 --lang de
-		ruby pdf-calendar.rb --year 2008 --weekstart sunday
-		ruby pdf-calendar.rb --help
+		ruby bin/pdf-calendar.rb --year 2008
+		ruby bin/pdf-calendar.rb --year 2008 --title "Fancy Calendar"
+		ruby bin/pdf-calendar.rb --year 2008 --pdf fancycal.pdf
+		ruby bin/pdf-calendar.rb --year 2008 --paper letter
+		ruby bin/pdf-calendar.rb --year 2008 --lang de
+		ruby bin/pdf-calendar.rb --year 2008 --weekstart sunday
+		ruby bin/pdf-calendar.rb --help
 
 Leaving out `--year` creates a calendar for the current year.
 

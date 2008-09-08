@@ -32,9 +32,9 @@ require 'ostruct'
 require 'csv'
 require 'erb'
 
-require 'lib/calendar'
-require 'lib/mark'
-require 'lib/languages'
+require File.expand_path(
+    File.join(File.dirname(__FILE__), '..', 'lib', 'pdf-calendar'))
+
 
 PDF_CALENDAR_VERSION = '0.1'
 

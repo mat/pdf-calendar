@@ -1,6 +1,4 @@
 require 'utils'
-require '../lib/calendar'
-require '../lib/languages'
 
 class LanguagesTest < Test::Unit::TestCase
   def setup

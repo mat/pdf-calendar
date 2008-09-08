@@ -1,5 +1,4 @@
 require 'utils'
-require '../lib/calendar'
 
 class LayoutTest < Test::Unit::TestCase
   def setup

@@ -4,5 +4,5 @@ require 'pdf-calendar/calendar'
 require 'pdf-calendar/languages'
 
 module PDFCalendar
-  VERSION = '0.0.1' unless defined?(PDFCalendar::VERSION)
+  VERSION = '0.1.0' unless defined?(PDFCalendar::VERSION)
 end

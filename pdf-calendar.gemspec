@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.has_rdoc = "false"
   s.require_paths = ["lib"]
   s.specification_version = "2"
-  s.version = "0.0.1"
+  s.version = "0.1.0"
   s.executables = ["pdf-calendar"]
   s.email = "email at matthias-luedtke dot de"
   s.required_ruby_version = ">= 0"

@@ -50,14 +50,21 @@ module Calendar
     add_lang(*lang_es)
   end
 
-   def self.weekdays(for_locale)
+   def self.weekdays(for_locale, weekstart=:monday)
       add_langs
 
       unless @@weekday_names[for_locale]
         raise "Locale <#{for_locale}> not supported."
       end
 
-      @@weekday_names[for_locale]
+      weekdays = @@weekday_names[for_locale]
+
+      if weekstart == :sunday
+        sun = weekdays.pop
+        weekdays = [sun] + weekdays
+      end
+
+      weekdays
    end
 
    def self.months(for_locale)

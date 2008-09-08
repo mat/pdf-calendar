@@ -4,12 +4,13 @@ module Calendar
 
 class Layout
 
-  attr_reader :month
+  attr_reader :month, :weekstart
   attr_reader :table
 
   # month is a Time, only year and month are considered, though
-  def initialize(month)
+  def initialize(month, options = {})
     @month = month
+    @weekstart = Layout.check_weekstart(options[:weekstart])
 
     @table = fill_table_with_calendar(Array.new(6){Array.new(7)})
     tidy_table
@@ -36,13 +37,30 @@ class Layout
   end
   alias :get_day []
 
-  private
+  def self.check_weekstart(weekstart)
+    if    weekstart.to_s =~ /^sun/i 
+      return :sunday
+    elsif weekstart.to_s =~ /^mon/i 
+      return :monday
+    elsif weekstart.nil? # Default
+      return :monday
+    else 
+      raise 'Week must start at either Sunday or Monday.'
+    end
+  end
   
+  private
+
+
   def fill_table_with_calendar(table)
     date = Date.new(@month.year, @month.month, 1)
 
-    # Set day offset so that we get the sequence Monday...Sunday
-    day_offset = (date.wday + 5)%7
+    if @weekstart == :monday
+      # Set day offset so that we get the sequence Monday...Sunday
+      day_offset = (date.wday + 5)%7
+    else # Sunday...Saturday
+      day_offset = (date.wday + 6)%7
+    end
 
     last_day_in_month = ((date >> 1) - 1).day
 

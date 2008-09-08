@@ -79,6 +79,12 @@ class Optparse
           options.lang = l
         end
 
+        paper_formats = ['sunday', 'monday']
+        opts.on("--weekstart WEEKDAY", paper_formats, "Week starts on",
+                "  (#{paper_formats.join(',')})") do |wd|
+          options.weekstart = wd
+        end
+
         opts.on("--fop PATH", "Path to 'fop' executable") do |path|
           options.fop_path = path
         end
@@ -121,12 +127,13 @@ cal_title = options.title
 
 year = options.year
 
-cal = (1..12).to_a.map{ |month| Calendar::Layout.new(Time.mktime(year, month)) }.map{ |calendar| calendar.table} 
+cal = (1..12).to_a.map{ |month| Calendar::Layout.new(Time.mktime(year, month), :weekstart => options.weekstart) }.map{ |calendar| calendar.table} 
 
 caltemplate = ERB.new(File.read('templates/default.xslfo.xml'))
 
 cal_title ||= year
-weekdays = Calendar::Languages.weekdays(options.lang)
+weekstart = Calendar::Layout.check_weekstart(options.weekstart)
+weekdays = Calendar::Languages.weekdays(options.lang, weekstart)
 month_names = Calendar::Languages.months(options.lang)
 cal = cal
 paper = options.paper

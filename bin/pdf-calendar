@@ -123,24 +123,21 @@ end  # class Optparse
 
 options = Optparse.parse(ARGV)
 
-cal_title = options.title
-
-year = options.year
-
-cal = (1..12).to_a.map{ |month| Calendar::Layout.new(Time.mktime(year, month), :weekstart => options.weekstart) }.map{ |calendar| calendar.table} 
 
 template_file = File.expand_path(
    File.join(File.dirname(__FILE__), '..', 'templates', 'default.xslfo.xml'))
 
 caltemplate = ERB.new(File.read(template_file))
 
-cal_title ||= year
-weekstart = Calendar::Layout.check_weekstart(options.weekstart)
-weekdays = Calendar::Languages.weekdays(options.lang, weekstart)
+options.title ||= options.year
+marks       = options.marks 
+
+weekstart   = Calendar::Layout.check_weekstart(options.weekstart)
+weekdays    = Calendar::Languages.weekdays(options.lang, weekstart)
 month_names = Calendar::Languages.months(options.lang)
-cal = cal
-paper = options.paper
-marks = options.marks 
+
+
+cal = (1..12).to_a.map{ |month| Calendar::Layout.new(Time.mktime(options.year, month), :weekstart => options.weekstart) }.map{ |calendar| calendar.table} 
 
 fo_stylesheet = caltemplate.result(binding) 
 

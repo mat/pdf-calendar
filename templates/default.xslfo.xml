@@ -20,7 +20,7 @@ end
 <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
 <fo:layout-master-set>
 
-<% if paper == 'letter' %>
+<% if options.paper == 'letter' %>
 <fo:simple-page-master margin-right="1cm" margin-left="1cm" margin-bottom="1cm" margin-top="1cm" page-width="279mm" page-height="216mm" master-name="letter">
 <% else %>
 <fo:simple-page-master margin-right="1cm" margin-left="1cm" margin-bottom="1cm" margin-top="1cm" page-width="297mm" page-height="210mm" master-name="din-a4"> 
@@ -32,7 +32,7 @@ end
 </fo:simple-page-master>
 </fo:layout-master-set>
 
-<% if paper == 'letter' %>
+<% if options.paper == 'letter' %>
 <fo:page-sequence initial-page-number="1" master-reference="letter">
 <% else %>
 <fo:page-sequence initial-page-number="1" master-reference="din-a4">
@@ -46,7 +46,7 @@ end
       <fo:block font-size="18pt" line-height="24pt" 
                 space-after="5pt" background-color="gray" color="white" 
                 text-align="center" padding-top="3pt">
-		 <%= cal_title %>
+		 <%= options.title %>
       </fo:block>
 </fo:block-container>
 
@@ -80,7 +80,7 @@ end
 
 <% for week in cal[0] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 1, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 1, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -119,7 +119,7 @@ end
 
 <% for week in cal[1] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 2, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 2, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -158,7 +158,7 @@ end
 
 <% for week in cal[2] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 3, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 3, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -197,7 +197,7 @@ end
 
 <% for week in cal[3] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 4, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 4, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -239,7 +239,7 @@ end
 
 <% for week in cal[4] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 5, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 5, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -280,7 +280,7 @@ end
 
 <% for week in cal[5] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 6, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 6, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -321,7 +321,7 @@ end
 
 <% for week in cal[6] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 7, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 7, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -362,7 +362,7 @@ end
 
 <% for week in cal[7] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 8, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 8, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -403,7 +403,7 @@ end
 
 <% for week in cal[8] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 9, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 9, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -444,7 +444,7 @@ end
 
 <% for week in cal[9] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 10, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 10, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -482,7 +482,7 @@ end
 
 <% for week in cal[10] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 11, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 11, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 
@@ -524,7 +524,7 @@ end
 
 <% for week in cal[11] %> 
   <fo:table-row color="black" font-weight="normal" font-size="8pt" line-height="9pt" height="0.6cm">
-    <% for day in week %> <%= render_day(year, 12, day, marks) %> <% end %>
+    <% for day in week %> <%= render_day(options.year, 12, day, marks) %> <% end %>
   </fo:table-row>
 <% end %>
 

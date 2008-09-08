@@ -79,9 +79,9 @@ class Optparse
           options.lang = l
         end
 
-        paper_formats = ['sunday', 'monday']
-        opts.on("--weekstart WEEKDAY", paper_formats, "Week starts on",
-                "  (#{paper_formats.join(',')})") do |wd|
+        weekstart_formats = ['sunday', 'monday']
+        opts.on("--weekstart WEEKDAY", weekstart_formats, "Week starts on",
+                "  (#{weekstart_formats.join(',')})") do |wd|
           options.weekstart = wd
         end
 

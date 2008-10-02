@@ -17,6 +17,7 @@ Gem::Specification.new do |s|
  "examples/example-calendar-2008.pdf"]
   s.rubygems_version = "1.2.0"
   s.homepage = "http://github.com/mat/pdf-calendar"
+  s.rubyforge_project = 'pdf-calendar'
   s.loaded = "false"
   s.summary = "PDF calendars. For a whole year. Using Ruby and Apache FOP."
   s.bindir = "bin"
@@ -25,7 +26,7 @@ Gem::Specification.new do |s|
   s.date = "Mon Sep 08 00:00:00 +0200 2008"
   s.authors = ["Matthias L\303\274dtke"]
   s.name = "pdf-calendar"
-  s.required_rubygems_version = ">= 0"
+  s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.has_rdoc = "false"
   s.require_paths = ["lib"]
   s.specification_version = "2"
